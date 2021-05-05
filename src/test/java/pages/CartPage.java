@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.Locale;
 
-public class CartPage extends BasePages {
+public class CartPage extends BasePage {
     public static final By CHECKOUT_BUTTON = By.cssSelector("#checkout");
     public static final By CONTINUE_SHOPPING = By.cssSelector("#continue-shopping");
 

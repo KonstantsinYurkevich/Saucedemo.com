@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LogInPage extends BasePage {
     public static final By USERNAME_INPUT = By.id("user-name");
@@ -19,7 +18,6 @@ public class LogInPage extends BasePage {
     }
 
     public void logIn(String user, String password) {
-        wait.until(ExpectedConditions.)
         driver.findElement(USERNAME_INPUT).sendKeys(user);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();

@@ -39,8 +39,21 @@ public class ProductsPage extends BasePage {
         String removeButton = "//*[contains(@name, '" + itemName + "')]";
         driver.findElement(By.xpath(removeButton)).click();
     }
+
     public String getProductName(String name) {
-        String nameProduct = "//*[contains(text(),'"+name+"')]";
+        String nameProduct = "//*[contains(text(),'" + name + "')]";
         return driver.findElement(By.xpath(nameProduct)).getText();
+    }
+
+    public boolean removeButtonIsDisplayed(String name) {
+        boolean buttonDisplayed;
+        try {
+            waitButton.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + name
+                    + "')]//ancestor::div/div/button[contains(@name,'remove')]"))).isDisplayed();
+            buttonDisplayed = true;
+        } catch (TimeoutException exception) {
+            buttonDisplayed = false;
+        }
+        return buttonDisplayed;
     }
 }

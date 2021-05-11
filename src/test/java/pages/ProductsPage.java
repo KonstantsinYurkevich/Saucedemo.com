@@ -24,7 +24,7 @@ public class ProductsPage extends BasePage {
         return pageOpened;
     }
 
-    public void open(String name) {
+    public void openProduct(String name) {
         String openButton = "//*[contains(text(),'" + name + "')]/ancestor::a[contains(@id,'link')]";
         driver.findElement(By.xpath(openButton)).click();
     }

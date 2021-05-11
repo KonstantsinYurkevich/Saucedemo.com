@@ -37,7 +37,7 @@ public class ProductsTest extends BaseTest {
         String testProduct = "Jacket";
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
-        productsPage.open(testProduct);
+        productsPage.openProduct(testProduct);
         assertTrue(productPage.pageOpened(), "Product page doesn't open");
     }
 
@@ -46,7 +46,7 @@ public class ProductsTest extends BaseTest {
         String testProduct = "Jacket";
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
-        productsPage.open(testProduct);
+        productsPage.openProduct(testProduct);
         assertTrue(productPage.pageOpened(), "Product page doesn't open");
         productPage.addToCart();
         String nameFromProductPage = productPage.getProductName();

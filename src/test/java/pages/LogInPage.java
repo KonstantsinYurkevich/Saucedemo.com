@@ -1,7 +1,9 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LogInPage extends BasePage {
     public static final By USERNAME_INPUT = By.id("user-name");
@@ -25,5 +27,16 @@ public class LogInPage extends BasePage {
 
     public String getError() {
         return driver.findElement(ERROR_MASSAGE).getText();
+    }
+
+    public boolean logInButtonIsDisplayed() {
+        boolean buttonDisplayed;
+        try {
+            waitButton.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-button")));
+            buttonDisplayed = true;
+        } catch (TimeoutException exception) {
+            buttonDisplayed = false;
+        }
+        return buttonDisplayed;
     }
 }

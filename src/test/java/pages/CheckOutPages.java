@@ -11,6 +11,7 @@ public class CheckOutPages extends BasePage {
     public static final By FIRST_NAME = By.cssSelector("#first-name");
     public static final By LAST_NAME = By.cssSelector("#last-name");
     public static final By POSTAL_CODE = By.cssSelector("#postal-code");
+    public static final By Error_Massage = By.cssSelector("[data-test='error']");
 
     public CheckOutPages(WebDriver driver) {
         super(driver);
@@ -39,6 +40,11 @@ public class CheckOutPages extends BasePage {
 
     public void continueCheckout() {
         driver.findElement(CONTINUE_BUTTON).click();
+    }
+
+    public String getError() {
+        return driver.findElement(Error_Massage).getText();
+
     }
 
 }

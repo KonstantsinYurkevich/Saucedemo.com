@@ -1,10 +1,33 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class BurgerMenuTest extends BaseTest {
+
+    @DataProvider(name = "Log in data")
+    public Object[][] logInaData() {
+        return new Object[][]{
+                {"", PASSWORD, "User name should be required" },
+                {USER, "", "Password should be required" },
+                {USER, "asddsadas", "Epic sadface: Username and password do not match any user in this service" },
+                {"qweqweqw", PASSWORD, "Epic sadface: Sorry, this user has been locked out." },
+        };
+    }
+
+    @Test(description = "User name should be required", dataProvider = "Log in data")
+    public void logInTest(String user, String password, String errorMessage) {
+        logInPage.open();
+        logInPage.logIn(user, password);
+        String error = logInPage.getError();
+        assertEquals(error, errorMessage);
+
+    }
+
     @Test
     public void logOutTest() {
         logInPage.open();

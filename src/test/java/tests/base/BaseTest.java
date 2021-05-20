@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
@@ -35,8 +36,11 @@ public abstract class BaseTest {
             options.addArguments("--start-maximized");
             driver = new ChromeDriver(options);
         } else if (browser.equals("firefox")) {
-            WebDriverManager.chromiumdriver().setup();
-            driver = new FirefoxDriver();
+            WebDriverManager.firefoxdriver().setup();
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--no-sandbox");
+            driver = new FirefoxDriver(options);
+            driver.manage().window().maximize();
         }
         testContext.setAttribute("driver", driver);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

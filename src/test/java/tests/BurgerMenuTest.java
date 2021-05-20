@@ -9,17 +9,17 @@ import static org.testng.Assert.assertTrue;
 
 public class BurgerMenuTest extends BaseTest {
 
-    @DataProvider(name = "Log in data")
+    @DataProvider(name = "Login data")
     public Object[][] logInaData() {
         return new Object[][]{
-                {"", PASSWORD, "User name should be required" },
-                {USER, "", "Password should be required" },
+                {"", PASSWORD, "Epic sadface: Username is required" },
+                {USER, "", "Epic sadface: Password is required" },
                 {USER, "asddsadas", "Epic sadface: Username and password do not match any user in this service" },
-                {"qweqweqw", PASSWORD, "Epic sadface: Sorry, this user has been locked out." },
+                {"qweqweqw", PASSWORD, "Epic sadface: Username and password do not match any user in this service" },
         };
     }
 
-    @Test(description = "User name should be required", dataProvider = "Log in data")
+    @Test(description = "Login tests", dataProvider = "Login data")
     public void logInTest(String user, String password, String errorMessage) {
         logInPage.open();
         logInPage.logIn(user, password);
@@ -28,7 +28,7 @@ public class BurgerMenuTest extends BaseTest {
 
     }
 
-    @Test
+    @Test (description = "Logout test")
     public void logOutTest() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
@@ -37,7 +37,7 @@ public class BurgerMenuTest extends BaseTest {
         assertTrue(logInPage.logInButtonIsDisplayed(), "log out doesn't work");
     }
 
-    @Test
+    @Test (description = "Burger menu opens on each page and it's tabs opens")
     public void burgerMenuButtonAllItemsWorksFromAnyPageWhileLogIn() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);

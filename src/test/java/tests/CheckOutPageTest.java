@@ -6,7 +6,7 @@ import tests.base.BaseTest;
 import static org.testng.Assert.assertEquals;
 
 public class CheckOutPageTest extends BaseTest {
-    @Test
+    @Test (description = "First name in checkout page - required")
     public void filedFirstNameONFirstCheckoutPageShouldBeRequired() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
@@ -19,7 +19,7 @@ public class CheckOutPageTest extends BaseTest {
 
     }
 
-    @Test
+    @Test (description = "Last name in checkout page - required")
     public void filedLastNameONFirstCheckoutPageShouldBeRequired() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
@@ -32,7 +32,7 @@ public class CheckOutPageTest extends BaseTest {
 
     }
 
-    @Test
+    @Test (description = "Zip code in checkout page - required")
     public void filedPostCodeONFirstCheckoutPageShouldBeRequired() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);

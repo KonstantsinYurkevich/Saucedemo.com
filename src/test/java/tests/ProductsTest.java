@@ -2,13 +2,14 @@ package tests;
 
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
+import tests.base.Retry;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ProductsTest extends BaseTest {
 
-    @Test (description = "Button remove displayed on added product")
+    @Test (description = "Button remove displayed on added product", retryAnalyzer = Retry.class)
     public void afterAddingProductFromProductsPageButtonRemoveDisplayed() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -18,7 +19,7 @@ public class ProductsTest extends BaseTest {
                 " doesn't displayed");
     }
 
-    @Test (description = "Adding product from products page")
+    @Test (description = "Adding product from products page", retryAnalyzer = Retry.class)
     public void productShouldBeAddedIntoCartFromProductsPage() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -33,7 +34,7 @@ public class ProductsTest extends BaseTest {
                 "in cart doesn't match");
     }
 
-    @Test (description = "Product page opened after click on it from products page")
+    @Test (description = "Product page opened after click on it from products page", retryAnalyzer = Retry.class)
     public void productPageShouldBeOpenedFromProductsPage() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -42,7 +43,7 @@ public class ProductsTest extends BaseTest {
         assertTrue(productPage.pageOpened(), "Product page doesn't open");
     }
 
-    @Test (description = "Adding product from product page")
+    @Test (description = "Adding product from product page", retryAnalyzer = Retry.class)
     public void productShouldBeAddedToCartFromProductPage() {
         String testProduct = "Jacket";
         logInPage.open();

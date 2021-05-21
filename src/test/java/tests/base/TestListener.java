@@ -15,12 +15,19 @@ public class TestListener implements ITestListener {
     public void onTestStart(ITestResult result) {
         System.out.println(String.format("Test started:%s", result.getName()));
     }
+    public void onTestSuccess(ITestResult result) {
+        System.out.println(String.format("Test Passed:%s",result.getName()));
+    }
 
     //TODO API REQUEST TO SET STATUS OF TEST CASE
     public void onTestFailure(ITestResult result) {
         WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
         ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-        System.out.println(String.format("Test started:%s", result.getName()));
+        System.out.println(String.format("Test Failed:%s", result.getName()));
+    }
+    public void onFinish(ITestContext context) {
+        System.out.println();
+        System.out.println(String.format("++++++++++++Tests class run complete++++++++++++"));
     }
 
 }

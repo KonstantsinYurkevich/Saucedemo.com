@@ -39,6 +39,7 @@ public abstract class BaseTest {
             WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--no-sandbox");
+            options.addPreference("disable_beforeunload",false);
             driver = new FirefoxDriver(options);
             driver.manage().window().maximize();
         }

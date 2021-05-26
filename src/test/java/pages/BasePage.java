@@ -8,13 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public abstract class BasePage {
-    WebDriver driver;
-    WebDriverWait waitPageLoad;
-    WebDriverWait waitButton;
     public static final By ALL_ITEMS = By.id("inventory_sidebar_link");
     public static final By ABOUT = By.id("about_sidebar_link");
     public static final By LOG_OUT = By.id("logout_sidebar_link");
     public static final By RESET_APP_STATE = By.id("reset_sidebar_link");
+    WebDriver driver;
+    WebDriverWait waitPageLoad;
+    WebDriverWait waitButton;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

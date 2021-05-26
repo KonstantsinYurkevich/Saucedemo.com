@@ -1,11 +1,35 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
+import tests.base.Retry;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class BurgerMenuTest extends BaseTest {
-    @Test
+
+    @DataProvider(name = "Login data")
+    public Object[][] logInaData() {
+        return new Object[][]{
+                {"", PASSWORD, "Epic sadface: Username is required"},
+                {USER, "", "Epic sadface: Password is required"},
+                {USER, "asddsadas", "Epic sadface: Username and password do not match any user in this service"},
+                {"qweqweqw", PASSWORD, "Epic sadface: Username and password do not match any user in this service"},
+        };
+    }
+
+    @Test(description = "Login tests", dataProvider = "Login data", retryAnalyzer = Retry.class)
+    public void logInTest(String user, String password, String errorMessage) {
+        logInPage.open();
+        logInPage.logIn(user, password);
+        String error = logInPage.getError();
+        assertEquals(error, errorMessage);
+
+    }
+
+    @Test(description = "Logout test", retryAnalyzer = Retry.class)
     public void logOutTest() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
@@ -14,7 +38,7 @@ public class BurgerMenuTest extends BaseTest {
         assertTrue(logInPage.logInButtonIsDisplayed(), "log out doesn't work");
     }
 
-    @Test
+    @Test(description = "Burger menu opens on each page and it's tabs opens", retryAnalyzer = Retry.class)
     public void burgerMenuButtonAllItemsWorksFromAnyPageWhileLogIn() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);

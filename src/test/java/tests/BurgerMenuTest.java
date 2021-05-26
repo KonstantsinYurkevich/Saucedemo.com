@@ -13,10 +13,10 @@ public class BurgerMenuTest extends BaseTest {
     @DataProvider(name = "Login data")
     public Object[][] logInaData() {
         return new Object[][]{
-                {"", PASSWORD, "Epic sadface: Username is required" },
-                {USER, "", "Epic sadface: Password is required" },
-                {USER, "asddsadas", "Epic sadface: Username and password do not match any user in this service" },
-                {"qweqweqw", PASSWORD, "Epic sadface: Username and password do not match any user in this service" },
+                {"", PASSWORD, "Epic sadface: Username is required"},
+                {USER, "", "Epic sadface: Password is required"},
+                {USER, "asddsadas", "Epic sadface: Username and password do not match any user in this service"},
+                {"qweqweqw", PASSWORD, "Epic sadface: Username and password do not match any user in this service"},
         };
     }
 
@@ -29,7 +29,7 @@ public class BurgerMenuTest extends BaseTest {
 
     }
 
-    @Test (description = "Logout test", retryAnalyzer = Retry.class)
+    @Test(description = "Logout test", retryAnalyzer = Retry.class)
     public void logOutTest() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
@@ -38,7 +38,7 @@ public class BurgerMenuTest extends BaseTest {
         assertTrue(logInPage.logInButtonIsDisplayed(), "log out doesn't work");
     }
 
-    @Test (description = "Burger menu opens on each page and it's tabs opens", retryAnalyzer = Retry.class)
+    @Test(description = "Burger menu opens on each page and it's tabs opens", retryAnalyzer = Retry.class)
     public void burgerMenuButtonAllItemsWorksFromAnyPageWhileLogIn() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);

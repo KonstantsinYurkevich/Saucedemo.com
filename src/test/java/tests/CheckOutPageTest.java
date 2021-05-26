@@ -7,7 +7,7 @@ import tests.base.Retry;
 import static org.testng.Assert.assertEquals;
 
 public class CheckOutPageTest extends BaseTest {
-    @Test (description = "First name in checkout page - required", retryAnalyzer = Retry.class)
+    @Test(description = "First name in checkout page - required", retryAnalyzer = Retry.class)
     public void filedFirstNameONFirstCheckoutPageShouldBeRequired() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
@@ -20,7 +20,7 @@ public class CheckOutPageTest extends BaseTest {
 
     }
 
-    @Test (description = "Last name in checkout page - required", retryAnalyzer = Retry.class)
+    @Test(description = "Last name in checkout page - required", retryAnalyzer = Retry.class)
     public void filedLastNameONFirstCheckoutPageShouldBeRequired() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
@@ -33,7 +33,7 @@ public class CheckOutPageTest extends BaseTest {
 
     }
 
-    @Test (description = "Zip code in checkout page - required", retryAnalyzer = Retry.class)
+    @Test(description = "Zip code in checkout page - required", retryAnalyzer = Retry.class)
     public void filedPostCodeONFirstCheckoutPageShouldBeRequired() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);

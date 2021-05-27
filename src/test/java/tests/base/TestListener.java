@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utiles.AllureUtils;
 
 public class TestListener implements ITestListener {
     //TODO CREATE TEST RUN USING API(ADD TEST CASES TOO)
@@ -23,7 +24,7 @@ public class TestListener implements ITestListener {
     //TODO API REQUEST TO SET STATUS OF TEST CASE
     public void onTestFailure(ITestResult result) {
         WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
-        ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        AllureUtils.takeScreenshot(driver);
         System.out.println(String.format("Test Failed:%s", result.getName()));
     }
 

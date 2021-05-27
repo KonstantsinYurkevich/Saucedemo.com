@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,7 @@ public class ProductsPage extends BasePage {
         String openButton = "//*[contains(text(),'" + name + "')]/ancestor::a[contains(@id,'link')]";
         driver.findElement(By.xpath(openButton)).click();
     }
-
+    @Step("Add product {name} into cart")
     public void addToCart(String name) {
         driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]//ancestor::div/div/button[contains(@class," +
                 "'btn')]")).click();

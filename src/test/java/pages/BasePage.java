@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -47,10 +48,12 @@ public abstract class BasePage {
 
     }
 
+    @Step("Open burger menu")
     public void burgerMenuOpen() {
         driver.findElement(By.id("react-burger-menu-btn")).click();
     }
 
+    @Step("Checking that burger menu is opened")
     public boolean burgerMenuIsOpened() {
         boolean burgerMenuIsHidden;
         try {
@@ -67,10 +70,12 @@ public abstract class BasePage {
         driver.findElement(By.id("react-burger-cross-btn")).click();
     }
 
+    @Step("Click on button Log out in burger menu")
     public void burgerMenuButtonLogOutClick() {
         driver.findElement(LOG_OUT).click();
     }
 
+    @Step("Click on button all items in burger menu")
     public void burgerMenuButtonAllItemsClick() {
         driver.findElement(ALL_ITEMS).click();
     }

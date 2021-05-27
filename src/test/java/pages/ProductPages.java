@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -19,10 +20,12 @@ public class ProductPages extends BasePage {
         return driver.findElement(By.xpath("//div[@class = 'inventory_details_name large_size']")).getText();
     }
 
+    @Step("Clock on button add to cart on product page ")
     public void addToCart() {
         driver.findElement(ADD_TO_CART_BUTTON).click();
     }
 
+    @Step("Checking that product page is opened ")
     public boolean pageOpened() {
         boolean pageOpened;
         try {

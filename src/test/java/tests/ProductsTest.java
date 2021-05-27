@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.Retry;
 import utiles.AllureUtils;
 
 import static org.testng.Assert.assertEquals;
@@ -11,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 public class ProductsTest extends BaseTest {
 
 
-    @Test(description = "Button remove displayed on added product", retryAnalyzer = Retry.class)
+    @Test(description = "Button remove displayed on added product")
     public void afterAddingProductFromProductsPageButtonRemoveDisplayed() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -22,7 +21,7 @@ public class ProductsTest extends BaseTest {
         AllureUtils.takeScreenshot(driver);
     }
 
-    @Test(description = "Adding product from products page", retryAnalyzer = Retry.class)
+    @Test(description = "Adding product from products page")
     public void productShouldBeAddedIntoCartFromProductsPage() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -35,18 +34,20 @@ public class ProductsTest extends BaseTest {
         String nameFromCartPage = cartPage.getProductName(testProduct);
         assertEquals(nameFromCartPage, nameFromProductsPage, "Product  that added to the cart from it's page and " +
                 "in cart doesn't match");
+        AllureUtils.takeScreenshot(driver);
     }
 
-    @Test(description = "Product page opened after click on it from products page", retryAnalyzer = Retry.class)
+    @Test(description = "Product page opened after click on it from products page")
     public void productPageShouldBeOpenedFromProductsPage() {
         String testProduct = "Jacket";
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
         productsPage.openProduct(testProduct);
         assertTrue(productPage.pageOpened(), "Product page doesn't open");
+        AllureUtils.takeScreenshot(driver);
     }
 
-    @Test(description = "Adding product from product page", retryAnalyzer = Retry.class)
+    @Test(description = "Adding product from product page")
     public void productShouldBeAddedToCartFromProductPage() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -59,5 +60,6 @@ public class ProductsTest extends BaseTest {
         String nameFromCartPage = cartPage.getProductName(testProduct);
         assertEquals(nameFromCartPage, nameFromProductPage, "Product  that added to the cart from it's page and " +
                 "in cart doesn't match");
+        AllureUtils.takeScreenshot(driver);
     }
 }

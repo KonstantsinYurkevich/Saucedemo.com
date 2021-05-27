@@ -32,6 +32,7 @@ public class LogInPage extends BasePage {
         return driver.findElement(ERROR_MASSAGE).getText();
     }
 
+    @Step("Checking that login button is displayed")
     public boolean logInButtonIsDisplayed() {
         boolean buttonDisplayed;
         try {

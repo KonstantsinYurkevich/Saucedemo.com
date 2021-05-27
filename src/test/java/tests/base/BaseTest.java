@@ -34,8 +34,9 @@ public abstract class BaseTest {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox");
             options.addArguments("--headless");
-            options.addArguments("--start-maximized");
+            options.addArguments("start-maximized");
             driver = new ChromeDriver(options);
+            driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();

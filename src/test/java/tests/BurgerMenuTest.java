@@ -3,7 +3,7 @@ package tests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.Retry;
+import utiles.AllureUtils;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -20,25 +20,26 @@ public class BurgerMenuTest extends BaseTest {
         };
     }
 
-    @Test(description = "Login tests", dataProvider = "Login data", retryAnalyzer = Retry.class)
+    @Test(description = "Login tests", dataProvider = "Login data")
     public void logInTest(String user, String password, String errorMessage) {
         logInPage.open();
         logInPage.logIn(user, password);
         String error = logInPage.getError();
         assertEquals(error, errorMessage);
-
+        AllureUtils.takeScreenshot(driver);
     }
 
-    @Test(description = "Logout test", retryAnalyzer = Retry.class)
+    @Test(description = "Logout test")
     public void logOutTest() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
         productsPage.burgerMenuOpen();
         productsPage.burgerMenuButtonLogOutClick();
         assertTrue(logInPage.logInButtonIsDisplayed(), "log out doesn't work");
+        AllureUtils.takeScreenshot(driver);
     }
 
-    @Test(description = "Burger menu opens on each page and it's tabs opens", retryAnalyzer = Retry.class)
+    @Test(description = "Burger menu opens on each page and it's tabs opens")
     public void burgerMenuButtonAllItemsWorksFromAnyPageWhileLogIn() {
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
@@ -58,6 +59,7 @@ public class BurgerMenuTest extends BaseTest {
         assertTrue(productPage.burgerMenuIsOpened(), "burger menu doesn't open");
         checkoutPage.burgerMenuButtonAllItemsClick();
         assertTrue(productsPage.pageOpened(), "Button All Items doesn't work from cart page");
+        AllureUtils.takeScreenshot(driver);
 
     }
 }

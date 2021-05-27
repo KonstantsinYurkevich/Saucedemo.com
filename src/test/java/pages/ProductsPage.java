@@ -25,10 +25,12 @@ public class ProductsPage extends BasePage {
         return pageOpened;
     }
 
+    @Step("Open product {name} page")
     public void openProduct(String name) {
         String openButton = "//*[contains(text(),'" + name + "')]/ancestor::a[contains(@id,'link')]";
         driver.findElement(By.xpath(openButton)).click();
     }
+
     @Step("Add product {name} into cart")
     public void addToCart(String name) {
         driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]//ancestor::div/div/button[contains(@class," +
@@ -46,6 +48,7 @@ public class ProductsPage extends BasePage {
         return driver.findElement(By.xpath(nameProduct)).getText();
     }
 
+    @Step("Checking remove button is displayed on products page")
     public boolean removeButtonIsDisplayed(String name) {
         boolean buttonDisplayed;
         try {

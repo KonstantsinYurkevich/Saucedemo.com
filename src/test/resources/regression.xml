@@ -4,12 +4,12 @@
     <test name="test 1">
         <classes>
             <class name="tests.BurgerMenuTest" />
-            <class name="tests.CheckOutPageTest" />
         </classes>
     </test> <!-- Test -->
     <test name="test 2">
         <classes>
             <class name="tests.ProductsTest" />
+            <class name="tests.CheckOutPageTest" />
         </classes>
     </test> <!-- Test -->
 </suite>

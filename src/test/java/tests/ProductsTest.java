@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import utiles.AllureUtils;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -18,7 +17,7 @@ public class ProductsTest extends BaseTest {
         productsPage.addToCart(testProduct);
         assertTrue(productsPage.removeButtonIsDisplayed(testProduct), "Button remove after click on add to cart button" +
                 " doesn't displayed");
-        AllureUtils.takeScreenshot(driver);
+
     }
 
     @Test(description = "Adding product from products page")
@@ -34,7 +33,6 @@ public class ProductsTest extends BaseTest {
         String nameFromCartPage = cartPage.getProductName(testProduct);
         assertEquals(nameFromCartPage, nameFromProductsPage, "Product  that added to the cart from it's page and " +
                 "in cart doesn't match");
-        AllureUtils.takeScreenshot(driver);
     }
 
     @Test(description = "Product page opened after click on it from products page")
@@ -42,9 +40,10 @@ public class ProductsTest extends BaseTest {
         String testProduct = "Jacket";
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
+        String fromProductsPage = productsPage.getProductName(testProduct);
         productsPage.openProduct(testProduct);
-        assertTrue(productPage.pageOpened(), "Product page doesn't open");
-        AllureUtils.takeScreenshot(driver);
+        String fromProductPage = productsPage.getProductName(testProduct);
+        assertEquals(fromProductsPage, fromProductPage, "Product page doesn't open");
     }
 
     @Test(description = "Adding product from product page")
@@ -60,6 +59,5 @@ public class ProductsTest extends BaseTest {
         String nameFromCartPage = cartPage.getProductName(testProduct);
         assertEquals(nameFromCartPage, nameFromProductPage, "Product  that added to the cart from it's page and " +
                 "in cart doesn't match");
-        AllureUtils.takeScreenshot(driver);
     }
 }

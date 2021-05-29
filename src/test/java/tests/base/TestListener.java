@@ -16,6 +16,8 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestSuccess(ITestResult result) {
+        WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
+        AllureUtils.takeScreenshot(driver);
         System.out.println(String.format("Test Passed:%s", result.getName()));
     }
 

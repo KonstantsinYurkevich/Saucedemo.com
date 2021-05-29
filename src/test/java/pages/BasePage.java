@@ -6,8 +6,10 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Listeners;
+import tests.base.TestListener;
 
-
+@Listeners(TestListener.class)
 public abstract class BasePage {
     public static final By ALL_ITEMS = By.id("inventory_sidebar_link");
     public static final By ABOUT = By.id("about_sidebar_link");
@@ -23,7 +25,7 @@ public abstract class BasePage {
         waitButton = new WebDriverWait(driver, 2);
 
     }
-
+    @Step("Checking that burger menu is displayed")
     public boolean burgerMenuIsDisplayed() {
         boolean burgerMenuIsDisplayed;
         try {

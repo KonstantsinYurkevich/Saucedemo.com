@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import utiles.AllureUtils;
 
 import static org.testng.Assert.assertEquals;
 
@@ -17,7 +16,6 @@ public class CheckOutPageTest extends BaseTest {
         checkoutPage.checkOutUserData("", LAST_NAME, POSTAL_CODE);
         checkoutPage.continueCheckout();
         assertEquals(checkoutPage.getError(), "Error: First Name is required", "Error massage doesn't equals");
-        AllureUtils.takeScreenshot(driver);
 
     }
 
@@ -31,7 +29,6 @@ public class CheckOutPageTest extends BaseTest {
         checkoutPage.checkOutUserData(FIRST_NAME, "", POSTAL_CODE);
         checkoutPage.continueCheckout();
         assertEquals(checkoutPage.getError(), "Error: Last Name is required", "Error massage doesn't equals");
-        AllureUtils.takeScreenshot(driver);
 
     }
 
@@ -45,7 +42,6 @@ public class CheckOutPageTest extends BaseTest {
         checkoutPage.checkOutUserData(FIRST_NAME, LAST_NAME, "");
         checkoutPage.continueCheckout();
         assertEquals(checkoutPage.getError(), "Error: Postal Code is required", "Error massage doesn't equals");
-        AllureUtils.takeScreenshot(driver);
 
     }
 }

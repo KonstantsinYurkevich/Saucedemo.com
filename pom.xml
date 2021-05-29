@@ -20,7 +20,6 @@
         <aspectjweaver.version>1.9.6</aspectjweaver.version>
         <allure-maven.version>2.10.0</allure-maven.version>
         <allure-testng.version>2.13.9</allure-testng.version>
-        <allure-report.version>2.10.0</allure-report.version>
     </properties>
     <build>
             <plugins>

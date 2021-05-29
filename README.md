@@ -38,19 +38,21 @@ Simple Test Automation Framework for SauceDemo.com
 
 ### *Build requirements:*
 + Java 8
-+ Maven 3
-+ Chrome browser
++ Maven 3.8.1
++ Chrome browser 90.0
++ OS
 
 ### *Used Technologies:*
-+ Selenium
-+ Maven
-+ TestNG
++ Selenium 3.141.59
++ DriverManager 4.4.1
++ TestNG 7.1.0
++ OS: Windows 10
 
 ### *Test info:*
  - Dependencies version [  mvn versions:display-dependency-updates ] 
  - Update all dependencies [ mvn versions:use-latest-versions ]
- - Run only one test suite [ mvn clean test -Dtest=BurgerMenuTest ]
- - Run only one test case [ mvn clean test -Dtest=ProductsTest#productShouldBeAddedIntoCartFromProductsPage ]
+ - Run only one test suite [ mvn clean test -Dtest=SuitName ]
+ - Run only one test case [ mvn clean test -Dtest=TestName#testCase ]
  - To set default XML file for tests  [ mvn clean test -DsuiteXmlFile=src/test/resources/name.xml ]
  - Run default test XML [ mvn clean test ]
- - Test results [ target/surefire-reports/emailable-report.html ]
+ - Test results [ allure-report (target/surefire-reports/emailable-report.html) allure serve ]

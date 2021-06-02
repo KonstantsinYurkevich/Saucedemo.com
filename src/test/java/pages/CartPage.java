@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -16,10 +17,12 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open cart page")
     public void open() {
         driver.get("https://www.saucedemo.com/cart.html");
     }
 
+    @Step("Checking that cart page is opened")
     public boolean pageOpened() {
         boolean pageOpened;
         try {
@@ -31,6 +34,7 @@ public class CartPage extends BasePage {
         return pageOpened;
     }
 
+    @Step("Click checkout button on cart page")
     public void checkout() {
         driver.findElement(CHECKOUT_BUTTON).click();
     }

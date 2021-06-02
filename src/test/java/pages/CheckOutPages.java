@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -28,20 +29,24 @@ public class CheckOutPages extends BasePage {
         return pageOpened;
     }
 
+    @Step("Open first checkout page")
     public void openFirsCheckoutPage() {
         driver.get("https://www.saucedemo.com/checkout-step-one.html");
     }
 
+    @Step("Fill in the form checkout : First name - {firstName}, Last name - {LastName}, Post code - {PostCode}")
     public void checkOutUserData(String firstName, String LastName, String PostCode) {
         driver.findElement(FIRST_NAME).sendKeys(firstName);
         driver.findElement(LAST_NAME).sendKeys(LastName);
         driver.findElement(POSTAL_CODE).sendKeys(PostCode);
     }
 
+    @Step("Click button continue checkout")
     public void continueCheckout() {
         driver.findElement(CONTINUE_BUTTON).click();
     }
 
+    @Step("Get error massage from checkout page")
     public String getError() {
         return driver.findElement(Error_Massage).getText();
 

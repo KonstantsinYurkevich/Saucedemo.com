@@ -1,12 +1,15 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Listeners;
+import tests.base.TestListener;
 
-
+@Listeners(TestListener.class)
 public abstract class BasePage {
     public static final By ALL_ITEMS = By.id("inventory_sidebar_link");
     public static final By ABOUT = By.id("about_sidebar_link");
@@ -22,7 +25,7 @@ public abstract class BasePage {
         waitButton = new WebDriverWait(driver, 2);
 
     }
-
+    @Step("Checking that burger menu is displayed")
     public boolean burgerMenuIsDisplayed() {
         boolean burgerMenuIsDisplayed;
         try {
@@ -47,10 +50,12 @@ public abstract class BasePage {
 
     }
 
+    @Step("Open burger menu")
     public void burgerMenuOpen() {
         driver.findElement(By.id("react-burger-menu-btn")).click();
     }
 
+    @Step("Checking that burger menu is opened")
     public boolean burgerMenuIsOpened() {
         boolean burgerMenuIsHidden;
         try {
@@ -67,10 +72,12 @@ public abstract class BasePage {
         driver.findElement(By.id("react-burger-cross-btn")).click();
     }
 
+    @Step("Click on button Log out in burger menu")
     public void burgerMenuButtonLogOutClick() {
         driver.findElement(LOG_OUT).click();
     }
 
+    @Step("Click on button all items in burger menu")
     public void burgerMenuButtonAllItemsClick() {
         driver.findElement(ALL_ITEMS).click();
     }

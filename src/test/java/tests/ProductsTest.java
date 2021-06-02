@@ -2,14 +2,14 @@ package tests;
 
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.Retry;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ProductsTest extends BaseTest {
 
-    @Test(description = "Button remove displayed on added product", retryAnalyzer = Retry.class)
+
+    @Test(description = "Button remove displayed on added product")
     public void afterAddingProductFromProductsPageButtonRemoveDisplayed() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -17,9 +17,10 @@ public class ProductsTest extends BaseTest {
         productsPage.addToCart(testProduct);
         assertTrue(productsPage.removeButtonIsDisplayed(testProduct), "Button remove after click on add to cart button" +
                 " doesn't displayed");
+
     }
 
-    @Test(description = "Adding product from products page", retryAnalyzer = Retry.class)
+    @Test(description = "Adding product from products page")
     public void productShouldBeAddedIntoCartFromProductsPage() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -34,16 +35,18 @@ public class ProductsTest extends BaseTest {
                 "in cart doesn't match");
     }
 
-    @Test(description = "Product page opened after click on it from products page", retryAnalyzer = Retry.class)
+    @Test(description = "Product page opened after click on it from products page")
     public void productPageShouldBeOpenedFromProductsPage() {
         String testProduct = "Jacket";
         logInPage.open();
         logInPage.logIn(USER, PASSWORD);
+        String fromProductsPage = productsPage.getProductName(testProduct);
         productsPage.openProduct(testProduct);
-        assertTrue(productPage.pageOpened(), "Product page doesn't open");
+        String fromProductPage = productsPage.getProductName(testProduct);
+        assertEquals(fromProductsPage, fromProductPage, "Product page doesn't open");
     }
 
-    @Test(description = "Adding product from product page", retryAnalyzer = Retry.class)
+    @Test(description = "Adding product from product page")
     public void productShouldBeAddedToCartFromProductPage() {
         String testProduct = "Jacket";
         logInPage.open();

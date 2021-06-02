@@ -6,7 +6,7 @@ version: 2
 jobs:
   ui-tests:
     docker:
-      - image: cimg/16.0.0-browsers
+      - image: circleci/openjdk:8u292-jdk-browsers
     environment:
     # get from git and get maven dependencies
     steps:

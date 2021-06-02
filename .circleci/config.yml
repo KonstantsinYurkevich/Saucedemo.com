@@ -6,7 +6,7 @@ version: 2
 jobs:
   ui-tests:
     docker:
-      - image: cimg/openjdk:16.0.0-browsers
+      - image: cimg/11.0.10-browsers
     environment:
     # get from git and get maven dependencies
     steps:

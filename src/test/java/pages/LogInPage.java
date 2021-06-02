@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -15,10 +16,12 @@ public class LogInPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open LogIn page")
     public void open() {
         driver.get("https://www.saucedemo.com/");
     }
 
+    @Step("LogIn by user {user} and password {password}")
     public void logIn(String user, String password) {
         driver.findElement(USERNAME_INPUT).sendKeys(user);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
@@ -29,6 +32,7 @@ public class LogInPage extends BasePage {
         return driver.findElement(ERROR_MASSAGE).getText();
     }
 
+    @Step("Checking that login button is displayed")
     public boolean logInButtonIsDisplayed() {
         boolean buttonDisplayed;
         try {

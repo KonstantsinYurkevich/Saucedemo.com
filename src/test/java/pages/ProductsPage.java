@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Locale;
-
 public class ProductsPage extends BasePage {
 
     public ProductsPage(WebDriver driver) {

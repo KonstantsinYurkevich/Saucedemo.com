@@ -44,6 +44,7 @@ public class ProductsTest extends BaseTest {
         productsPage.openProduct(testProduct);
         String fromProductPage = productsPage.getProductName(testProduct);
         assertEquals(fromProductsPage, fromProductPage, "Product page doesn't open");
+        //asdasdasdasd
     }
 
     @Test(description = "Adding product from product page")

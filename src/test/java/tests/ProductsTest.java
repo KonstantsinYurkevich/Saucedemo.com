@@ -49,7 +49,7 @@ public class ProductsTest extends BaseTest {
         //asdasdasd
     }
 
-    @Test(description = "Adding product from product page")
+    @Test(description = "Adding product  from  product  page")
     public void productShouldBeAddedToCartFromProductPage() {
         String testProduct = "Jacket";
         logInPage.open();

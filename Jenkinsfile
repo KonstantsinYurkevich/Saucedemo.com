@@ -5,12 +5,15 @@ pipeline {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "mvn"
     }
+    parameters {
+            gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+        }
 
     stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/KonstantsinYurkevich/Saucedemo.com.git'
+                git branch: "${params.BRANCH}", url: 'https://github.com/KonstantsinYurkevich/AllureReporting.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn clean test"

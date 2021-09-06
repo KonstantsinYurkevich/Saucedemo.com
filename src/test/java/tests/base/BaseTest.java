@@ -6,10 +6,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
@@ -19,7 +23,7 @@ public abstract class BaseTest {
     public static final String FIRST_NAME = "Anton";
     public static final String LAST_NAME = "Frolov";
     public static final String POSTAL_CODE = "220123";
-    protected WebDriver driver;
+    protected RemoteWebDriver driver;
     protected LogInPage logInPage;
     protected ProductsPage productsPage;
     protected CartPage cartPage;
@@ -28,7 +32,14 @@ public abstract class BaseTest {
 
     @Parameters({"browser"})
     @BeforeMethod
-    public void setUp(@Optional("chrome") String browser, ITestContext testContext) {
+    public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "chrome");
+        capabilities.setCapability("browserVersion", "91.0");
+        RemoteWebDriver driver = new RemoteWebDriver(
+                URI.create("http://selenoid:4444/wd/hub").toURL(),
+                capabilities
+        );
         if (browser.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();

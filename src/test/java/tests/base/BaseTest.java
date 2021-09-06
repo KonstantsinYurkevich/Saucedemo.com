@@ -1,13 +1,20 @@
 package tests.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URI;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
+import org.testng.internal.Configuration;
 import pages.*;
 
 import java.util.concurrent.TimeUnit;
@@ -28,16 +35,21 @@ public abstract class BaseTest {
 
     @Parameters({"browser"})
     @BeforeMethod
-    public void setUp(@Optional("chrome") String browser, ITestContext testContext) {
-        if (browser.equals("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--no-sandbox");
-            options.addArguments("--headless");
-            options.addArguments("start-maximized");
-            driver = new ChromeDriver(options);
-            driver.manage().window().maximize();
-        } else if (browser.equals("firefox")) {
+    public void setUp(@Optional("chrome") String browser1, ITestContext testContext) {
+        if (browser1.equals("chrome")) {
+            DesiredCapabilities browser = new DesiredCapabilities();
+            browser.setBrowserName("chrome");
+            browser.setCapability("enableVNC", true);
+            RemoteWebDriver driver = null;
+            try {
+                driver = new RemoteWebDriver(
+                        URI.create("localhost:4444/wd/hub").toURL(),
+                        browser
+                );
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        } else if (browser1.equals("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--no-sandbox");

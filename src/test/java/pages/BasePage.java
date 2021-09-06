@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
@@ -16,11 +15,11 @@ public abstract class BasePage {
     public static final By ABOUT = By.id("about_sidebar_link");
     public static final By LOG_OUT = By.id("logout_sidebar_link");
     public static final By RESET_APP_STATE = By.id("reset_sidebar_link");
-    RemoteWebDriver driver;
+    WebDriver driver;
     WebDriverWait waitPageLoad;
     WebDriverWait waitButton;
 
-    public BasePage(RemoteWebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         waitPageLoad = new WebDriverWait(driver, 10);
         waitButton = new WebDriverWait(driver, 2);

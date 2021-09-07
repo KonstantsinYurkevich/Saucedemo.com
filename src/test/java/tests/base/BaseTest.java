@@ -63,7 +63,7 @@ public abstract class BaseTest {
                     });
                 }
             });
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
+            driver = new RemoteWebDriver(new URL("http://192.168.116.113:4444/wd/hub"), firefoxOptions);
             driver.manage().window().maximize();
         }
         testContext.setAttribute("driver", driver);

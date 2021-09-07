@@ -15,6 +15,7 @@
         </classes>
     </test> <!-- Test -->
     <test name="Tests3">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.CheckOutPageTest"/>
         </classes>

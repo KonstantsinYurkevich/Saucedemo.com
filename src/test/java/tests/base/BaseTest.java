@@ -53,7 +53,7 @@ public abstract class BaseTest {
                     });
                 }
             });
-            driver = new RemoteWebDriver(new URL("http://192.168.116.113:4444/"),options);
+            driver = new RemoteWebDriver(new URL("http://192.168.116.113:4444/wd/hub"),options);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {

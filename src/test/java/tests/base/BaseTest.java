@@ -57,12 +57,12 @@ public abstract class BaseTest {
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
+           /* WebDriverManager.firefoxdriver().setup();*/
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--no-sandbox");
             options.addArguments("--headless");
             options.addPreference("disable_beforeunload", false);
-            driver = new FirefoxDriver(options);
+            driver = new RemoteWebDriver(new URL("http://192.168.116.113:4444/wd/hub"),options);
             driver.manage().window().maximize();
         }
         testContext.setAttribute("driver", driver);

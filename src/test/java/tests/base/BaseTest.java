@@ -1,10 +1,6 @@
 package tests.base;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
@@ -24,7 +20,7 @@ public abstract class BaseTest {
     public static final String FIRST_NAME = "Anton";
     public static final String LAST_NAME = "Frolov";
     public static final String POSTAL_CODE = "220123";
-    protected WebDriver driver;
+    protected RemoteWebDriver driver;
     protected LogInPage logInPage;
     protected ProductsPage productsPage;
     protected CartPage cartPage;

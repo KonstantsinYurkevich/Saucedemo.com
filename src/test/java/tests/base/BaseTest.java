@@ -57,6 +57,7 @@ public abstract class BaseTest {
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {
+
            /* WebDriverManager.firefoxdriver().setup();*/
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             firefoxOptions.setCapability("moz:firefoxOptions", new HashMap<String, Object>(){
@@ -68,8 +69,6 @@ public abstract class BaseTest {
                     });
                 }
             });
-
-
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
             driver.manage().window().maximize();
         }

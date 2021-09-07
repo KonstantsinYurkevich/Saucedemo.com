@@ -13,6 +13,8 @@ import pages.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
@@ -34,11 +36,24 @@ public abstract class BaseTest {
     public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws MalformedURLException {
         if (browser.equals("chrome")) {
          /*   WebDriverManager.chromedriver().setup();*/
+
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--no-sandbox");
-            options.addArguments("--headless");
-            options.addArguments("start-maximized");
-            driver = new RemoteWebDriver(new URL("http://172.18.0.5:4444/"),options);
+            options.setExperimentalOption("prefs", new HashMap<String, Object>(){
+                {
+                    put("profile.default_content_settings.popups", 0);
+                    put("download.default_directory", "/home/selenium/Downloads");
+                    put("download.prompt_for_download", false);
+                    put("download.directory_upgrade", true);
+                    put("safebrowsing.enabled", false);
+                    put("plugins.always_open_pdf_externally", true);
+                    put("plugins.plugins_disabled", new ArrayList<String>(){
+                        {
+                            add("Chrome PDF Viewer");
+                        }
+                    });
+                }
+            });
+            driver = new RemoteWebDriver(new URL("http://192.168.116.113:4444/"),options);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {

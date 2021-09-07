@@ -7,7 +7,6 @@
     <test name="Tests1">
         <classes>
             <class name="tests.BurgerMenuTest"/>
-            <class name="tests.CheckOutPageTest"/>
         </classes>
     </test> <!-- Test -->
     <test name="Tests2">

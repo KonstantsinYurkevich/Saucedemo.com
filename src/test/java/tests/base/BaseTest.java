@@ -38,7 +38,7 @@ public abstract class BaseTest {
             options.addArguments("--no-sandbox");
             options.addArguments("--headless");
             options.addArguments("start-maximized");
-            driver = new RemoteWebDriver(new URL("http://91.0.4472.101:4444"),options);
+            driver = new RemoteWebDriver(new URL("http://localhost:8081/"),options);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {

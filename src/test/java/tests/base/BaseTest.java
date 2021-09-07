@@ -33,12 +33,12 @@ public abstract class BaseTest {
     @BeforeMethod
     public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws MalformedURLException {
         if (browser.equals("chrome")) {
-            WebDriverManager.chromedriver().setup();
+         /*   WebDriverManager.chromedriver().setup();*/
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox");
             options.addArguments("--headless");
             options.addArguments("start-maximized");
-            driver = new RemoteWebDriver(new URL("http://172.18.0.1:4444/"),options);
+            driver = new RemoteWebDriver(new URL("http://172.18.0.5:4444/"),options);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {

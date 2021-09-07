@@ -5,6 +5,7 @@
         <listener class-name="tests.base.AnnotationTransformer"/>
     </listeners>
     <test name="Tests1">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.BurgerMenuTest"/>
             <class name="tests.CheckOutPageTest"/>

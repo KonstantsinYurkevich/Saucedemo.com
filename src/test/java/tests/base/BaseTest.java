@@ -82,9 +82,9 @@ public abstract class BaseTest {
         checkoutPage = new CheckOutPages(driver);
     }
 
-    @AfterMethod(alwaysRun = true)
+ /*   @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.quit();
-    }
+    }*/
 
 }

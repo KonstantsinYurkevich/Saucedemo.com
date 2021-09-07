@@ -62,7 +62,7 @@ public abstract class BaseTest {
             options.addArguments("--no-sandbox");
             options.addArguments("--headless");
             options.addPreference("disable_beforeunload", false);
-            driver = new RemoteWebDriver(new URL("http://192.168.116.113:4444/wd/hub"),options);
+            driver = new RemoteWebDriver(new URL("http://192.168.116.113:4444/"),options);
             driver.manage().window().maximize();
         }
         testContext.setAttribute("driver", driver);

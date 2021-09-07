@@ -6,10 +6,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
@@ -28,14 +31,15 @@ public abstract class BaseTest {
 
     @Parameters({"browser"})
     @BeforeMethod
-    public void setUp(@Optional("chrome") String browser, ITestContext testContext) {
+    public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws MalformedURLException {
         if (browser.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox");
             options.addArguments("--headless");
             options.addArguments("start-maximized");
-            driver = new ChromeDriver(options);
+            driver = new RemoteWebDriver(new URL("http://91.0.4472.101:4444/wd/hub"),options);
+           /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {
             WebDriverManager.firefoxdriver().setup();

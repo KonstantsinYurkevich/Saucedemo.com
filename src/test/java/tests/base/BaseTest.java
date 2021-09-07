@@ -36,7 +36,6 @@ public abstract class BaseTest {
     public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws MalformedURLException {
         if (browser.equals("chrome")) {
          /*   WebDriverManager.chromedriver().setup();*/
-
             ChromeOptions options = new ChromeOptions();
             options.setExperimentalOption("prefs", new HashMap<String, Object>(){
                 {

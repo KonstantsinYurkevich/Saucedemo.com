@@ -11,7 +11,6 @@
         </classes>
     </test> <!-- Test -->
     <test name="Tests2">
-        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.ProductsTest"/>
         </classes>

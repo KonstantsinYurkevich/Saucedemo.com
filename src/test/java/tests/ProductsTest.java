@@ -35,7 +35,7 @@ public class ProductsTest extends BaseTest {
                 "in cart doesn't match");
     }
 
-    @Test(description = "Product page opened after click on it from products page")
+   /* @Test(description = "Product page opened after click on it from products page")
     public void productPageShouldBeOpenedFromProductsPage() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -44,12 +44,9 @@ public class ProductsTest extends BaseTest {
         productsPage.openProduct(testProduct);
         String fromProductPage = productsPage.getProductName(testProduct);
         assertEquals(fromProductsPage, fromProductPage, "Product page doesn't open");
-        //asdasdasdasd
-        //asdasd
-        //asdasdasd
-    }
+    }*/
 
-    @Test(description = "Adding product  from  product  page")
+    /*@Test(description = "Adding product  from  product  page")
     public void productShouldBeAddedToCartFromProductPage() {
         String testProduct = "Jacket";
         logInPage.open();
@@ -62,5 +59,5 @@ public class ProductsTest extends BaseTest {
         String nameFromCartPage = cartPage.getProductName(testProduct);
         assertEquals(nameFromCartPage, nameFromProductPage, "Product  that added to the cart from it's page and " +
                 "in cart doesn't match");
-    }
+    }*/
 }

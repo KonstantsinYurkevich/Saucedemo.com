@@ -58,11 +58,19 @@ public abstract class BaseTest {
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {
            /* WebDriverManager.firefoxdriver().setup();*/
-            FirefoxOptions options = new FirefoxOptions();
-            options.addArguments("--no-sandbox");
-            options.addArguments("--headless");
-            options.addPreference("disable_beforeunload", false);
-            driver = new RemoteWebDriver(new URL("http://192.168.116.113:4444/"),options);
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            firefoxOptions.setCapability("moz:firefoxOptions", new HashMap<String, Object>(){
+                {
+                    put("prefs", new HashMap<String, Object>(){
+                        {
+                            put("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream");
+                        }
+                    });
+                }
+            });
+
+
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
             driver.manage().window().maximize();
         }
         testContext.setAttribute("driver", driver);

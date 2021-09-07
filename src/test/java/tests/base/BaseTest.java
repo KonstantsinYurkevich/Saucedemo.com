@@ -33,7 +33,7 @@ public abstract class BaseTest {
 
     @Parameters("browser")
     @BeforeMethod
-    public void setUp(String browser, ITestContext testContext) throws MalformedURLException {
+    public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws MalformedURLException {
         if (browser.equals("chrome")) {
          /*   WebDriverManager.chromedriver().setup();*/
 

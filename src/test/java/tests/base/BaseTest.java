@@ -48,7 +48,7 @@ public abstract class BaseTest {
                     });
                 }
             });
-            driver = new RemoteWebDriver(new URL("http:// 192.168.10.4:4444/wd/hub"),options);
+            driver = new RemoteWebDriver(new URL("http://192.168.10.4:4444/wd/hub"),options);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {
@@ -63,7 +63,7 @@ public abstract class BaseTest {
                     });
                 }
             });
-            driver = new RemoteWebDriver(new URL("http:// 192.168.10.4:4444/wd/hub"), firefoxOptions);
+            driver = new RemoteWebDriver(new URL("http://192.168.10.4:4444/wd/hub"), firefoxOptions);
             driver.manage().window().maximize();
         }
         testContext.setAttribute("driver", driver);

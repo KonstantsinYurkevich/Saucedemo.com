@@ -31,7 +31,7 @@ public abstract class BaseTest {
     }
 
     @BeforeSuite
-    public void setUp( String browser) throws MalformedURLException {
+    public void setUp() throws MalformedURLException {
          /*   WebDriverManager.chromedriver().setup();*/
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserName", "chrome");

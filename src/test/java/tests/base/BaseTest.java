@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
@@ -30,26 +31,14 @@ public abstract class BaseTest {
 
     @Parameters("browser")
     @BeforeMethod
-    public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws MalformedURLException {
+    public void setUp(String browser, ITestContext testContext) throws MalformedURLException {
         if (browser.equals("chrome")) {
          /*   WebDriverManager.chromedriver().setup();*/
-            ChromeOptions options = new ChromeOptions();
-            options.setExperimentalOption("prefs", new HashMap<String, Object>(){
-                {
-                    put("profile.default_content_settings.popups", 0);
-                    put("download.default_directory", "/home/selenium/Downloads");
-                    put("download.prompt_for_download", false);
-                    put("download.directory_upgrade", true);
-                    put("safebrowsing.enabled", false);
-                    put("plugins.always_open_pdf_externally", true);
-                    put("plugins.plugins_disabled", new ArrayList<String>(){
-                        {
-                            add("Chrome PDF Viewer");
-                        }
-                    });
-                }
-            });
-            driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"),options);
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("browserName", "CHROME");
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"),capabilities);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {

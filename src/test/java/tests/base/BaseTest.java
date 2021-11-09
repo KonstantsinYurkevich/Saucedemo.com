@@ -51,12 +51,8 @@ public abstract class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown() throws AWTException {
-        Robot r = new Robot();
-        r.keyPress(KeyEvent.VK_CONTROL);
-        r.keyPress(KeyEvent.VK_T);
-        r.keyRelease(KeyEvent.VK_CONTROL);
-        r.keyRelease(KeyEvent.VK_T);
+    public void tearDown()  {
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"T");
         driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(0));
         driver.close();
         driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(0));

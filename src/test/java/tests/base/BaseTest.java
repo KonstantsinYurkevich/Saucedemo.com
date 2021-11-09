@@ -1,7 +1,5 @@
 package tests.base;
 
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
@@ -10,9 +8,6 @@ import pages.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
@@ -43,17 +38,11 @@ public abstract class BaseTest {
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {
            /* WebDriverManager.firefoxdriver().setup();*/
-            FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.setCapability("moz:firefoxOptions", new HashMap<String, Object>(){
-                {
-                    put("prefs", new HashMap<String, Object>(){
-                        {
-                            put("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream");
-                        }
-                    });
-                }
-            });
-            driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"), firefoxOptions);
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("browserName", "firefox");
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"),capabilities);
             driver.manage().window().maximize();
         }
         testContext.setAttribute("driver", driver);

@@ -48,12 +48,12 @@ public abstract class BaseTest {
         checkoutPage = new CheckOutPages(driver);
     }
 
-    @AfterMethod(alwaysRun = true)
+   /* @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL+ "t");
         driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(0));
         driver.close();
         driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(0));
-    }
+    }*/
 
 }

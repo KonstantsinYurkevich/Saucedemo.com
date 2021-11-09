@@ -2,6 +2,7 @@ package tests.base;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -48,7 +49,7 @@ public abstract class BaseTest {
                     });
                 }
             });
-            driver = new RemoteWebDriver(new URL("http://192.168.10.4:4444/wd/hub"),options);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
         } else if (browser.equals("firefox")) {
@@ -63,7 +64,7 @@ public abstract class BaseTest {
                     });
                 }
             });
-            driver = new RemoteWebDriver(new URL("http://192.168.10.4:4444/wd/hub"), firefoxOptions);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
             driver.manage().window().maximize();
         }
         testContext.setAttribute("driver", driver);

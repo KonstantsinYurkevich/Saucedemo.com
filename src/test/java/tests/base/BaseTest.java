@@ -1,5 +1,7 @@
 package tests.base;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
@@ -8,6 +10,7 @@ import pages.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
@@ -24,7 +27,7 @@ public abstract class BaseTest {
     protected ProductPages productPage;
     protected CheckOutPages checkoutPage;
 
-    @BeforeClass
+    @BeforeSuite
     public void setUp( String browser, ITestContext testContext) throws MalformedURLException {
          /*   WebDriverManager.chromedriver().setup();*/
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -46,7 +49,10 @@ public abstract class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        driver.quit();
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL+ "t");
+        driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(0));
+        driver.close();
+        driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(0));
     }
 
 }

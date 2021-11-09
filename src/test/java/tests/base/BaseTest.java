@@ -35,6 +35,7 @@ public abstract class BaseTest {
         if (browser.equals("chrome")) {
          /*   WebDriverManager.chromedriver().setup();*/
             DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("browserName", "chrome");
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
             driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"),capabilities);

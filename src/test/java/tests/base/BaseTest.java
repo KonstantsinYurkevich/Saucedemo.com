@@ -1,5 +1,6 @@
 package tests.base;
 
+import com.sun.glass.events.KeyEvent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -7,6 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import pages.*;
 
+import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,12 +50,16 @@ public abstract class BaseTest {
         checkoutPage = new CheckOutPages(driver);
     }
 
-   /* @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL+ "t");
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() throws AWTException {
+        Robot r = new Robot();
+        r.keyPress(KeyEvent.VK_CONTROL);
+        r.keyPress(KeyEvent.VK_T);
+        r.keyRelease(KeyEvent.VK_CONTROL);
+        r.keyRelease(KeyEvent.VK_T);
         driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(0));
         driver.close();
         driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(0));
-    }*/
+    }
 
 }

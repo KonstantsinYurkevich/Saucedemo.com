@@ -24,10 +24,8 @@ public abstract class BaseTest {
     protected ProductPages productPage;
     protected CheckOutPages checkoutPage;
 
-    @Parameters("browser")
-    @BeforeMethod
-    public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws MalformedURLException {
-        if (browser.equals("chrome")) {
+    @BeforeClass
+    public void setUp( String browser, ITestContext testContext) throws MalformedURLException {
          /*   WebDriverManager.chromedriver().setup();*/
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserName", "chrome");
@@ -36,15 +34,7 @@ public abstract class BaseTest {
             driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"),capabilities);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
-        } else if (browser.equals("firefox")) {
-           /* WebDriverManager.firefoxdriver().setup();*/
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("browserName", "firefox");
-            capabilities.setCapability("enableVNC", true);
-            capabilities.setCapability("enableVideo", true);
-            driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"),capabilities);
-            driver.manage().window().maximize();
-        }
+
         testContext.setAttribute("driver", driver);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         logInPage = new LogInPage(driver);

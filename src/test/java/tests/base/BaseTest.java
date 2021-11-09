@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 
@@ -20,15 +19,19 @@ public abstract class BaseTest {
     public static final String FIRST_NAME = "Anton";
     public static final String LAST_NAME = "Frolov";
     public static final String POSTAL_CODE = "220123";
-    protected RemoteWebDriver driver;
+    public static RemoteWebDriver driver;
     protected LogInPage logInPage;
     protected ProductsPage productsPage;
     protected CartPage cartPage;
     protected ProductPages productPage;
     protected CheckOutPages checkoutPage;
 
+    public static RemoteWebDriver getDriver(){
+        return driver;
+    }
+
     @BeforeSuite
-    public void setUp( String browser, ITestContext testContext) throws MalformedURLException {
+    public void setUp( String browser) throws MalformedURLException {
          /*   WebDriverManager.chromedriver().setup();*/
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserName", "chrome");
@@ -37,8 +40,6 @@ public abstract class BaseTest {
             driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"),capabilities);
            /* driver = new ChromeDriver(options);*/
             driver.manage().window().maximize();
-
-        testContext.setAttribute("driver", driver);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         logInPage = new LogInPage(driver);
         productsPage = new ProductsPage(driver);
